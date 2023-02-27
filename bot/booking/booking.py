@@ -39,3 +39,11 @@ class Booking(webdriver.Chrome):
             except:
                 return False
 
+    def select_place_to_go(self, place_to_go):
+        search_field = self.find_element(By.ID, ':Ra9:')
+        search_field.clear()
+        search_field.send_keys(place_to_go)
+        
+        autocomp_results=self.find_elements(By.CSS_SELECTOR,'div[data-testid="autocomplete-result"]')
+        autocomp_results[0].click()
+        time.sleep(10)
