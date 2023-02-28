@@ -8,3 +8,4 @@ with Booking() as bot:
     bot.select_dates('2023-03-16', '2023-03-14')
     bot.select_occupancy(10)
     bot.search()
+    bot.apply_filtration()

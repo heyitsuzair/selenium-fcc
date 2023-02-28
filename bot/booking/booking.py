@@ -2,7 +2,7 @@ from selenium import webdriver
 import booking.constants as const
 import os
 from selenium.webdriver.common.by import By
-import time
+from booking.booking_filtration import BookingFiltration
 
 
 class Booking(webdriver.Chrome):
@@ -72,7 +72,6 @@ class Booking(webdriver.Chrome):
             decrease_adult.click()
 
             if adult_value.text == '1':
-                print('true')
                 break
 
         for _ in range(no_of_adults - 1):
@@ -83,3 +82,8 @@ class Booking(webdriver.Chrome):
             By.CSS_SELECTOR, 'button[type=submit]')
         search_btn.click()
         # time.sleep(10)
+
+    def apply_filtration(self):
+        filtration = BookingFiltration(driver=self)
+        filtration.apply_star_rating(4, 1, 2)
+        filtration.apply_sort()
